@@ -10,9 +10,10 @@ def reward_function(params):
     waypoints = params['waypoints']
     closest_waypoints = params['closest_waypoints']
     heading = params['heading']
+    speed = params['speed']
 
     # Initialize the reward with typical value 
-    reward = 1.0
+    reward = 0.75
 
     # Calculate the direction of the center line based on the closest waypoints
     next_point = waypoints[closest_waypoints[1]]
@@ -29,8 +30,15 @@ def reward_function(params):
         direction_diff = 360 - direction_diff
 
     # Penalize the reward if the difference is too large
+    SPEED_THRESHOLD = 1.0
     DIRECTION_THRESHOLD = 10.0
-    if direction_diff > DIRECTION_THRESHOLD:
-        reward *= 0.5
+
+    if direction_diff > DIRECTION_THRESHOLD and speed > SPEED_THRESHOLD: 
+        reward = 0.25
+    elif direction_diff > DIRECTION_THRESHOLD:
+        reward = 0.5
+    
+    if direction_diff <= DIRECTION_THRESHOLD and speed > SPEED_THRESHOLD:
+        reward = 1.0
 
     return reward
