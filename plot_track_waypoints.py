@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-track_name = "New_York_Track"
+track_name = "reinvent_base"
 absolute_path = "."
 waypoints = np.load("%s/%s.npy" % (absolute_path, track_name))
 
