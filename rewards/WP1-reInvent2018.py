@@ -31,7 +31,7 @@ def reward_function(params):
 
     # Penalize the reward if the difference is too large
     DIRECTION_THRESHOLD = 10.0
-    if direction_diff > DIRECTION_THRESHOLD and speed == 2: 
+    if direction_diff > DIRECTION_THRESHOLD: 
         reward *= 0.5
 
     return reward
